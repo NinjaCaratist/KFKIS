@@ -22,31 +22,31 @@ class Main(QtWidgets.QMainWindow,MainWindow_ui.Ui_MainWindow):
         self.setupUi(self)
 
         self.NewEvent_pushButton.clicked.connect(self.on_NewEvent_pushButton_clicked)
-        self.dialog_1 = event_create_ui(self)
+        self.dialog_event_create = event_create_ui(self)
         self.cal_pushButton.clicked.connect(self.on_cal_pushButton_clicked)
-        self.dialog_2 = cal_ui(self)
+        self.dialog_calc = cal_ui(self)
         self.AddData_pushButton.clicked.connect(self.on_AddData_pushButton_clicked)
-        self.dialog_4 = dataAdd_ui(self)
+        self.dialog_data_Add = dataAdd_ui(self)
         self.Stat_pushButton.clicked.connect(self.on_Stat_pushButton_clicked)
-        self.dialog_5 = statistic_create_ui(self)
+        self.dialog_statistis = statistic_create_ui(self)
         self.AllData_pushButton.clicked.connect(self.on_AllData_pushButton_clicked)
-        self.dialog_7 = tables_ui(self)
+        self.dialog_tables = tables_ui(self)
         
 
     def on_NewEvent_pushButton_clicked(self):
-        self.dialog_1.show()
+        self.dialog_event_create.show()
         
     def on_cal_pushButton_clicked(self):
-        self.dialog_2.show()
+        self.dialog_calc.show()
 
     def on_AddData_pushButton_clicked(self):
-        self.dialog_4.show()
+        self.dialog_data_Add.show()
     
     def on_Stat_pushButton_clicked(self):
-        self.dialog_5.show()
+        self.dialog_statistis.show()
     
     def on_AllData_pushButton_clicked(self):
-        self.dialog_7.show()
+        self.dialog_tables.show()
 
 
 class event_create_ui(QtWidgets.QMainWindow, event_create_ui.Ui_MainWindow):
