@@ -1,11 +1,11 @@
 CREATE TABLE "places"(
-    "place_id" INTEGER NOT NULL,
+    "place_id" SERIAL NOT NULL,
     "place_name" VARCHAR(255) NOT NULL,
     "adress" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "places" ADD PRIMARY KEY("place_id");
-CREATE TABLE "countries"(
+CREATE TABLE "countries"( 
     "country_id" INTEGER NOT NULL,
     "country_name" VARCHAR(255) NOT NULL
     CONSTRAINT countries_country_name_check CHECK (((country_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
@@ -14,7 +14,7 @@ ALTER TABLE
     "countries" ADD PRIMARY KEY("country_id");
 CREATE TABLE "ranks"(
     "rank_id" INTEGER NOT NULL,
-    "rank_name" BIGINT NOT NULL
+    "rank_name" VARCHAR(255) NOT NULL
 CONSTRAINT ranks_rank_name_check CHECK (((rank_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
 );
 ALTER TABLE
@@ -23,12 +23,12 @@ CREATE TABLE "event_sportsman"(
     "event_id" INTEGER NOT NULL,
     "sportsman_id" INTEGER NOT NULL
 );
-ALTER TABLE
-    "event_sportsman" ADD PRIMARY KEY("event_id");
-ALTER TABLE
-    "event_sportsman" ADD PRIMARY KEY("sportsman_id");
+-- ALTER TABLE
+--     "event_sportsman" ADD PRIMARY KEY("event_id");
+-- ALTER TABLE
+--     "event_sportsman" ADD PRIMARY KEY("sportsman_id");
 CREATE TABLE "events"(
-    "event_id" INTEGER NOT NULL,
+    "event_id" SERIAL NOT NULL,
     "event_name" VARCHAR(255) NOT NULL,
     "sport_id" INTEGER NOT NULL,
     "resp_id" INTEGER NOT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE "events"(
     "place_id" INTEGER NOT NULL,
     "begin_date" DATE NOT NULL,
     "end_date" DATE NOT NULL,
-    "done" BOOLEAN NOT NULL
+    "done" BOOLEAN NULL
     CONSTRAINT events_event_name_check CHECK (((event_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
     
 );
 ALTER TABLE
     "events" ADD PRIMARY KEY("event_id");
 CREATE TABLE "trainers"(
-    "trainer_id" INTEGER NOT NULL,
+    "trainer_id" SERIAL NOT NULL,
     "first_name" VARCHAR(255) NOT NULL,
     "last_name" VARCHAR(255) NOT NULL,
     "middle_name" VARCHAR(255) NULL,
@@ -59,8 +59,8 @@ CREATE TABLE "trainers"(
 );
 ALTER TABLE
     "trainers" ADD PRIMARY KEY("trainer_id");
-CREATE TABLE "sportsmen"(
-    "sportsman_id" INTEGER NOT NULL,
+CREATE TABLE "athletes"(
+    "sportsman_id" SERIAL NOT NULL,
     "first_name" VARCHAR(255) NOT NULL,
     "second_name" VARCHAR(255) NOT NULL,
     "middle_name" VARCHAR(255) NULL,
@@ -70,15 +70,15 @@ CREATE TABLE "sportsmen"(
     "rank_id" INTEGER NULL,
     "phone" BIGINT NULL,
     "email" VARCHAR(255) NULL
-    CONSTRAINT sportsmen_first_name_check CHECK (((first_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
-    CONSTRAINT sportsmen_last_name_check CHECK (((last_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
-    CONSTRAINT sportsmen_middle_name_check CHECK (((middle_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
-    CONSTRAINT sportsmen_phone_check CHECK (((phone >= '10000000000'::bigint) AND (phone <= '99999999999'::bigint)))
+    CONSTRAINT athletes_first_name_check CHECK (((first_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
+    CONSTRAINT athletes_last_name_check CHECK (((last_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
+    CONSTRAINT athletes_middle_name_check CHECK (((middle_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
+    CONSTRAINT athletes_phone_check CHECK (((phone >= '10000000000'::bigint) AND (phone <= '99999999999'::bigint)))
 );
 ALTER TABLE
-    "sportsmen" ADD PRIMARY KEY("sportsman_id");
+    "athletes" ADD PRIMARY KEY("sportsman_id");
 CREATE TABLE "organaizers"(
-    "organizer_id" INTEGER NOT NULL,
+    "organizer_id" SERIAL NOT NULL,
     "name" VARCHAR(255) NOT NULL,
     "first_name" VARCHAR(255) NOT NULL,
     "last_name" VARCHAR(255) NOT NULL,
@@ -100,13 +100,13 @@ CREATE TABLE "sports"(
 );
 ALTER TABLE
     "sports" ADD PRIMARY KEY("sport_id");
-CREATE TABLE "position"(
+CREATE TABLE "positions"(
     "position_id" INTEGER NOT NULL,
     "position_name" VARCHAR(255) NOT NULL
-    CONSTRAINT position_position_name_check CHECK (((position_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
+    CONSTRAINT positions_position_name_check CHECK (((position_name)::text ~ '[a-zA-Zа-яА-Я]+$'::text))
 );
 ALTER TABLE
-    "position" ADD PRIMARY KEY("position_id");
+    "positions" ADD PRIMARY KEY("position_id");
 CREATE TABLE "cities"(
     "city_id" INTEGER NOT NULL,
     "city_name" VARCHAR(255) NOT NULL,
@@ -131,11 +131,11 @@ CREATE TABLE "employees"(
 ALTER TABLE
     "employees" ADD PRIMARY KEY("employee_id");
 ALTER TABLE
-    "sportsmen" ADD CONSTRAINT "sportsmen_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "cities"("city_id");
+    "athletes" ADD CONSTRAINT "athletes_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "cities"("city_id");
 ALTER TABLE
-    "sportsmen" ADD CONSTRAINT "sportsmen_trainer_id_foreign" FOREIGN KEY("trainer_id") REFERENCES "trainers"("trainer_id");
+    "athletes" ADD CONSTRAINT "athletes_trainer_id_foreign" FOREIGN KEY("trainer_id") REFERENCES "trainers"("trainer_id");
 ALTER TABLE
-    "sportsmen" ADD CONSTRAINT "sportsmen_sport_id_foreign" FOREIGN KEY("sport_id") REFERENCES "sports"("sport_id");
+    "athletes" ADD CONSTRAINT "athletes_sport_id_foreign" FOREIGN KEY("sport_id") REFERENCES "sports"("sport_id");
 ALTER TABLE
     "trainers" ADD CONSTRAINT "trainers_sport_id_foreign" FOREIGN KEY("sport_id") REFERENCES "sports"("sport_id");
 ALTER TABLE
@@ -145,17 +145,17 @@ ALTER TABLE
 ALTER TABLE
     "trainers" ADD CONSTRAINT "trainers_rank_id_foreign" FOREIGN KEY("rank_id") REFERENCES "ranks"("rank_id");
 ALTER TABLE
-    "employees" ADD CONSTRAINT "employees_position_id_foreign" FOREIGN KEY("position_id") REFERENCES "position"("position_id");
+    "employees" ADD CONSTRAINT "employees_position_id_foreign" FOREIGN KEY("position_id") REFERENCES "positions"("position_id");
 ALTER TABLE
     "trainers" ADD CONSTRAINT "trainers_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "cities"("city_id");
 ALTER TABLE
-    "sportsmen" ADD CONSTRAINT "sportsmen_rank_id_foreign" FOREIGN KEY("rank_id") REFERENCES "ranks"("rank_id");
+    "athletes" ADD CONSTRAINT "athletes_rank_id_foreign" FOREIGN KEY("rank_id") REFERENCES "ranks"("rank_id");
 ALTER TABLE
     "events" ADD CONSTRAINT "events_place_id_foreign" FOREIGN KEY("place_id") REFERENCES "places"("place_id");
 ALTER TABLE
     "events" ADD CONSTRAINT "events_sport_id_foreign" FOREIGN KEY("sport_id") REFERENCES "sports"("sport_id");
 ALTER TABLE
-    "event_sportsman" ADD CONSTRAINT "event_sportsman_sportsman_id_foreign" FOREIGN KEY("sportsman_id") REFERENCES "sportsmen"("sportsman_id");
+    "event_sportsman" ADD CONSTRAINT "event_sportsman_sportsman_id_foreign" FOREIGN KEY("sportsman_id") REFERENCES "athletes"("sportsman_id");
 ALTER TABLE
     "organaizers" ADD CONSTRAINT "organaizers_city_id_foreign" FOREIGN KEY("city_id") REFERENCES "cities"("city_id");
 ALTER TABLE

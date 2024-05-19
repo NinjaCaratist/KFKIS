@@ -14,6 +14,7 @@ from interface import cal_ui
 from interface import dataAdd_ui
 from interface import statistic_create_ui
 from interface import tables_ui
+from interface import pdf_editor_menu_ui
 
 
 class Main(QtWidgets.QMainWindow,MainWindow_ui.Ui_MainWindow):
@@ -29,6 +30,8 @@ class Main(QtWidgets.QMainWindow,MainWindow_ui.Ui_MainWindow):
         self.dialog_data_Add = dataAdd_ui(self)
         self.Stat_pushButton.clicked.connect(self.on_Stat_pushButton_clicked)
         self.dialog_statistis = statistic_create_ui(self)
+        self.PDF_pushButton.clicked.connect(self.on_PDF_pushButton_clicked)
+        self.dialog_pdf = pdf_editor_menu_ui(self)
         self.AllData_pushButton.clicked.connect(self.on_AllData_pushButton_clicked)
         self.dialog_tables = tables_ui(self)
         
@@ -44,6 +47,9 @@ class Main(QtWidgets.QMainWindow,MainWindow_ui.Ui_MainWindow):
     
     def on_Stat_pushButton_clicked(self):
         self.dialog_statistis.show()
+    
+    def on_PDF_pushButton_clicked(self):
+        self.dialog_pdf.show()
     
     def on_AllData_pushButton_clicked(self):
         self.dialog_tables.show()
@@ -65,6 +71,11 @@ class dataAdd_ui(QtWidgets.QMainWindow, dataAdd_ui.Ui_MainWindow):
         self.setupUi(self)
 
 class statistic_create_ui(QtWidgets.QMainWindow, statistic_create_ui.Ui_MainWindow):
+    def __init__(self, parent=None):  
+        super().__init__(parent) #dataAdd_ui, self
+        self.setupUi(self)
+        
+class pdf_editor_menu_ui(QtWidgets.QMainWindow, pdf_editor_menu_ui.Ui_MainWindow):
     def __init__(self, parent=None):  
         super().__init__(parent) #dataAdd_ui, self
         self.setupUi(self)
