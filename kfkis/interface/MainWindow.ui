@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>572</height>
+    <width>418</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,14 +19,14 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>391</width>
-      <height>481</height>
+      <width>411</width>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
         <widget class="QPushButton" name="NewEvent_pushButton">
          <property name="font">
           <font>
@@ -38,7 +38,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="1" column="0">
         <widget class="QPushButton" name="cal_pushButton">
          <property name="font">
           <font>
@@ -50,7 +50,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="2" column="0">
         <widget class="QPushButton" name="ListEvent_pushButton">
          <property name="font">
           <font>
@@ -62,7 +62,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="3" column="0">
         <widget class="QPushButton" name="AddData_pushButton">
          <property name="font">
           <font>
@@ -74,7 +74,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="4" column="0">
         <widget class="QPushButton" name="Stat_pushButton">
          <property name="font">
           <font>
@@ -86,7 +86,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="5" column="0">
         <widget class="QPushButton" name="PDF_pushButton">
          <property name="font">
           <font>
@@ -98,7 +98,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item row="6" column="0">
         <widget class="QPushButton" name="AllData_pushButton">
          <property name="font">
           <font>
@@ -120,7 +120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>483</width>
+     <width>418</width>
      <height>22</height>
     </rect>
    </property>

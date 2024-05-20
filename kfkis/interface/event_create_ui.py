@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'e:\uni\уник\vkr\programm\code\interface\event_create.ui'
+# Form implementation generated from reading ui file 'e:\KFKIS\KFKIS\kfkis\interface\event_create.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,11 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1257, 674)
+        MainWindow.resize(1164, 643)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1021, 601))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 1161, 601))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
         self.widget = QtWidgets.QWidget(self.verticalLayoutWidget)
         self.widget.setObjectName("widget")
         self.listWidget = QtWidgets.QListWidget(self.widget)
-        self.listWidget.setGeometry(QtCore.QRect(0, 30, 501, 161))
+        self.listWidget.setGeometry(QtCore.QRect(0, 30, 531, 151))
         self.listWidget.setObjectName("listWidget")
         item = QtWidgets.QListWidgetItem()
         self.listWidget.addItem(item)
@@ -245,15 +245,9 @@ class Ui_MainWindow(object):
         self.CreateButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Close|QtWidgets.QDialogButtonBox.Ok)
         self.CreateButtonBox.setObjectName("CreateButtonBox")
         self.verticalLayout.addWidget(self.CreateButtonBox)
-        self.TaskPlainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.TaskPlainTextEdit_2.setGeometry(QtCore.QRect(1030, 10, 201, 571))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.TaskPlainTextEdit_2.setFont(font)
-        self.TaskPlainTextEdit_2.setObjectName("TaskPlainTextEdit_2")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1257, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1164, 22))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         font = QtGui.QFont()
@@ -307,16 +301,4 @@ class Ui_MainWindow(object):
         self.AddPushButton.setText(_translate("MainWindow", "Добавить"))
         self.DellpushButton.setText(_translate("MainWindow", "Удалить"))
         self.label_10.setText(_translate("MainWindow", "Чек-лист"))
-        self.TaskPlainTextEdit_2.setPlainText(_translate("MainWindow", "Функционал:\n"
-"- в каждый комбокс данные из бд\n"
-"- учитывать даты и галочки\n"
-"- чеклист возможность добавления (уведомлять, если пуст пункт) и удаления при выделении\n"
-"-на кнопки(...) добавлять новые пункты\n"
-"\n"
-"\n"
-"Добавить:\n"
-"- добавление спортсменов?\n"
-"- добавление портрета дефолтного спортсмена?\n"
-"- Грид\n"
-"- Цвета?"))
         self.menu.setTitle(_translate("MainWindow", "Помощь"))

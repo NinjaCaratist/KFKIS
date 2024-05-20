@@ -1,12 +1,20 @@
 import psycopg2
-def connect_data_base(atr_name:str, table_name:str):
-    conn = psycopg2.connect(dbname="kfkis", user="postgres", password="1111", host="127.0.0.1")
-    cursor = conn.cursor()
-    cursor.execute(str("SELECT " + atr_name + " FROM " + table_name))
-    for person in cursor.fetchall():
-        print(f"{person[1]}")
-    cursor.close()
-    conn.close() 
+import pandas as pd
 
+def connect_data_base(querry:str):
+    conn = psycopg2.connect(dbname="postgres", user="postgres", password="5555", host="localhost")
+    df = pd.read_sql(querry, conn)
+    print(df)
+    conn.close()
+    return df 
+
+connect_data_base(" SELECT * FROM events")
+connect_data_base(" select sport_name from sports")
+connect_data_base(" select place_name from places")
+connect_data_base(""" 
+                  select e.last_name, e.first_name, e.middle_name, p.position_name from employees e
+inner join positions p
+on p.position_id = e.position_id
+""")
 
  

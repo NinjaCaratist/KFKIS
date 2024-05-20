@@ -7,6 +7,7 @@ from functional import pdf_editor
 from functional import folder_creator
 from functional import db_conn
 import sys
+import pandas as pd
 from interface import MainWindow_ui
 from interface import event_create_ui
 from interface import cal_ui
@@ -63,7 +64,7 @@ class event_create_ui(QtWidgets.QMainWindow, event_create_ui.Ui_MainWindow):
 class cal_ui(QtWidgets.QMainWindow, cal_ui.Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent) #cal_ui, self
-        self.setupUi(self)
+        self.setupUi(self)  
 
 class dataAdd_ui(QtWidgets.QMainWindow, dataAdd_ui.Ui_MainWindow):
     def __init__(self, parent=None):
@@ -75,10 +76,56 @@ class statistic_create_ui(QtWidgets.QMainWindow, statistic_create_ui.Ui_MainWind
         super().__init__(parent) #dataAdd_ui, self
         self.setupUi(self)
         
-class pdf_editor_menu_ui(QtWidgets.QMainWindow, pdf_editor_menu_ui.Ui_MainWindow):
+class pdf_editor_menu_ui(QtWidgets.QMainWindow, pdf_editor_menu_ui.Ui_MainWindow,QDialog):
     def __init__(self, parent=None):  
         super().__init__(parent) #dataAdd_ui, self
+        file1_name = []
+        file2_name = []
+        folder_name = []
         self.setupUi(self)
+        self.textEdit.setText(""" 
+- Чтобы объеденить файлы выберите два файла из папок
+
+- Чтобы извлечь страницу из файла выберите путь для файла 1 и номер страницы
+
+- Чтобы разделить файл выберите два файла из папок и укажите страницу
+
+Укажите деррикторию для полученного результата                          
+                              """)
+        self.instruction_Button.clicked.connect(self.writeinstruction)
+        self.pushButton_browse1.clicked.connect(self.browsefile1)
+        self.pushButton_browse2.clicked.connect(self.browsefile2)
+        self.pushButton_browse3.clicked.connect(self.browsefolder)
+        self.pushButton_split.clicked.connect(self.splitfiles)
+        
+    def writeinstruction(self):
+        self.textEdit.setText(""" 
+- Чтобы объеденить файлы выберите два файла из папок
+
+- Чтобы извлечь страницу из файла выберите путь для файла 1 и номер страницы
+
+- Чтобы разделить файл выберите два файла из папок и укажите страницу
+
+Укажите деррикторию для полученного результата                          
+                              """)
+    
+    def browsefile1(self):
+        self.file1_name = QFileDialog.getOpenFileName(self, 'Open file', 'E://inter/', 'PDF (*.pdf)')
+        self.input_filename_1.setText(self.file1_name[0])
+
+    def browsefile2(self):
+        self.file2_name = QFileDialog.getOpenFileName(self, 'Open file', 'E://inter/', 'PDF (*.pdf)')
+        self.input_filename_2.setText(self.file2_name[0])
+        
+    def browsefolder(self):
+        self.folder_name = QFileDialog.getExistingDirectory(self, 'Open Directory', 'E://inter/', QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks)
+        self.output_directory.setText(self.folder_name)
+        
+    def splitfiles(self):
+        num = self.page_num_box.value()
+        pdf_editor.split_pdf(self.file1_name[0],num,self.folder_name)
+        self.textEdit.setText("файл разделён")
+        
 
 class tables_ui(QtWidgets.QMainWindow, tables_ui.Ui_MainWindow):
     def __init__(self, parent=None):
@@ -89,8 +136,7 @@ def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
     window = Main() # Создаём объект класса 
     window.show()
-    app.exec_()
-    
+    app.exec_()    
     
 if __name__ == '__main__': # Если мы запускаем файл напрямую, а не импортируем
     app = QApplication(sys.argv)
@@ -98,4 +144,3 @@ if __name__ == '__main__': # Если мы запускаем файл напр�
     ex.show()
     sys.exit(app.exec_())
  
-main() 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1257</width>
-    <height>674</height>
+    <width>1164</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1021</width>
+      <width>1161</width>
       <height>601</height>
      </rect>
     </property>
@@ -498,8 +498,8 @@
              <rect>
               <x>0</x>
               <y>30</y>
-              <width>501</width>
-              <height>161</height>
+              <width>531</width>
+              <height>151</height>
              </rect>
             </property>
             <item>
@@ -666,42 +666,13 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPlainTextEdit" name="TaskPlainTextEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>1030</x>
-      <y>10</y>
-      <width>201</width>
-      <height>571</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="plainText">
-     <string>Функционал:
-- в каждый комбокс данные из бд
-- учитывать даты и галочки
-- чеклист возможность добавления (уведомлять, если пуст пункт) и удаления при выделении
--на кнопки(...) добавлять новые пункты
-
-
-Добавить:
-- добавление спортсменов?
-- добавление портрета дефолтного спортсмена?
-- Грид
-- Цвета?</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1257</width>
+     <width>1164</width>
      <height>22</height>
     </rect>
    </property>
